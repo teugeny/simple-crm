@@ -1,0 +1,8 @@
+App\Domain\Auth\DTO\UserDTO:
+  attributes:
+    id:
+      groups: ['post:read', 'post-details:read']
+    firstName:
+      groups: ['post:read', 'post-details:read']
+    lastName:
+      groups: ['post:read', 'post-details:read']

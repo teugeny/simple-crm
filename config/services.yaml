@@ -11,21 +11,24 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+        resource: '../src/*'
+        exclude: '../src/Domain'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller/'
+    App\Infrastructure\:
+        resource: '../src/Infrastructure/*'
+        exclude: '../src/Infrastructure/{Kernel.php}'
+
+    App\Presenter\Http\Rest\:
+        resource: '../src/Presenter/Http/Rest/*'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    mapper.dto.provider:
+        class: App\Application\Mapper\Provider\DTOMapper
+
+    mapper.entity.provider:
+        class: App\Application\Mapper\Provider\EntityMapper
+
+    App\Application\Mapper\Contract\DTOMapperInterface: '@mapper.dto.provider'
+
+    App\Application\Mapper\Contract\EntityMapperInterface: '@mapper.entity.provider'

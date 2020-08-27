@@ -1,0 +1,8 @@
+App\Domain\Article\DTO\TagDTO:
+  attributes:
+    id:
+      groups: ['tag:read', 'tag:write', 'post:read', 'post-details:read']
+    title:
+      groups: ['tag:read', 'tag:write', 'post:read', 'post-details:read']
+    slug:
+      groups: ['tag:read', 'tag:write', 'post:read', 'post-details:read']

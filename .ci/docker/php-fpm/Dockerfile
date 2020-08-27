@@ -51,24 +51,6 @@ COPY /php-fpm.d/custom.conf /usr/local/etc/php/php-fpm.d/
 
 # Install extensions
 RUN docker-php-ext-install pdo pdo_pgsql sockets
-#RUN pecl install redis && docker-php-ext-enable redis
-
-ARG XDEBUG_REMOTE_HOST
-ARG XDEBUG_REMOTE_PORT
-ARG XDEBUG_IDEKEY
-
-# Install xdebug (2.9.0 have a bug)
-RUN pecl install xdebug-2.9.0 \
-    && docker-php-ext-enable xdebug \
-    && echo -e "\
-xdebug.remote_host=${XDEBUG_REMOTE_HOST}\n\
-xdebug.remote_port=${XDEBUG_REMOTE_PORT}\n\
-xdebug.max_nesting_level=1000\n\
-xdebug.idekey=${XDEBUG_IDEKEY}"\
-> /usr/local/etc/php/conf.d/custom.ini
-
-# Install mongodb extension
-#RUN pecl install mongodb && docker-php-ext-enable mongodb
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php

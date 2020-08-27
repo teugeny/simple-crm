@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Auth\Entity\User" table="crm_users" repository-class="App\Infrastructure\Persistence\Doctrine\Repository\UserRepository">
+        <id name="id" column="id" type="uuid" />
+        <field name="firstName" column="first_name" type="string" />
+        <field name="lastName" column="last_name" type="string" />
+        <field name="gender" column="gender" type="string" />
+        <field name="age" column="age" type="integer" nullable="false" />
+        <field name="password" column="password" type="string" nullable="false"/>
+        <field name="email" column="email" type="string" nullable="true"/>
+        <many-to-many field="roles" target-entity="App\Domain\Auth\Entity\Role" mapped-by="users" fetch="LAZY" />
+        <field name="createdAt" type="datetime" column="created_at" nullable="true"/>
+        <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+    </entity>
+</doctrine-mapping>

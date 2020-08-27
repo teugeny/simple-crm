@@ -1,0 +1,8 @@
+App\Domain\Auth\DTO\RoleDTO:
+  attributes:
+    id:
+      groups: ['role:read', 'role:write', 'user:read']
+    title:
+      groups: ['role:read', 'role:write', 'user:read']
+    code:
+      groups: ['role:read', 'role:write', 'user:read']

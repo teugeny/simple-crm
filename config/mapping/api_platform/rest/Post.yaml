@@ -1,0 +1,27 @@
+App\Domain\Article\Entity\Post:
+  itemOperations:
+    get:
+      method: 'GET'
+      path: '/posts/{id}'
+      controller: App\Presenter\Http\Rest\Article\PostDetailsController
+      normalization_context:
+        groups: ['post-details:read']
+      output: App\UseCase\Article\GetPostDetails\GetPostDetailsOutputDTO
+      openapi_context:
+        summary: 'Get post details'
+
+  collectionOperations:
+    get:
+      method: 'GET'
+      path: '/posts'
+      controller: App\Presenter\Http\Rest\Article\PostGetListController
+      normalization_context:
+        groups: ['post:read']
+      output: App\UseCase\Article\PostGetList\GetPostListOutputDTO
+      openapi_context:
+        summary: 'Get list of available posts'
+        parameters:
+          - in: path
+            name: id
+            required: true
+            type: string

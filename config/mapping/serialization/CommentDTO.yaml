@@ -1,0 +1,6 @@
+App\Domain\Article\DTO\CommentDTO:
+  attributes:
+    id:
+      groups: ['comment:read', 'comment:write', 'post-details:read']
+    message:
+      groups: ['comment:read', 'comment:write', 'post-details:read']

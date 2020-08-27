@@ -1,5 +1,7 @@
 doctrine:
     dbal:
+        types:
+            uuid: Ramsey\Uuid\Doctrine\UuidType
         url: '%env(resolve:DATABASE_URL)%'
 
         # IMPORTANT: You MUST configure your server version,
@@ -8,11 +10,10 @@ doctrine:
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: true
+        auto_mapping: false
         mappings:
             App:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+                type: xml
+                dir: '%kernel.project_dir%/config/mapping/orm/domain'
+                prefix: 'App\Domain'
+                alias: 'App\Domain'

@@ -1,0 +1,18 @@
+App\Domain\Article\DTO\PostDTO:
+  attributes:
+    id:
+      groups: ['post:read', 'post:write', 'post-details:read', 'post-details:write']
+    title:
+      groups: ['post:read', 'post:write', 'post-details:read', 'post-details:write']
+    description:
+      groups: ['post:read', 'post:write', 'post-details:read', 'post-details:write']
+    author:
+      groups: ['post:read', 'post:write', 'post-details:read', 'post-details:write']
+    tags:
+      groups: ['post:read', 'post:write', 'post-details:read', 'post-details:write']
+    comments:
+      groups: [ 'post-details:read', 'post-details:write']
+    createdAt:
+      groups: ['post:read', 'post-details:read']
+    updatedAt:
+      groups: ['post:read', 'post-details:read']
